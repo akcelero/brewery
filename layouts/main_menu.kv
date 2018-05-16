@@ -1,0 +1,41 @@
+<MainMenu>:
+	name: 'MainMenu'
+	canvas.before:
+        Color:
+            rgba: 0.21, 0.23, 0.35, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+	AnchorLayout
+		anchor_x: 'center'
+		anchor_y: 'center'
+		height: self.parent.height
+		width: self.parent.width
+
+		GridLayout:
+			orientation: 'vertical'
+			size_hint: 0.5, 0.8
+			cols: 1
+			spacing: self.height * 0.1
+			Label:
+				text: 'MENU'
+				font_size: self.parent.width * 0.2
+			Button:
+				text: 'NOWA WARKA'
+				on_release: root.newBrew()
+				font_size: self.parent.width * 0.1
+				background_normal: ''
+				background_color: 0.51, 0.53, 0.65, 1
+				color: 0.21, 0.23, 0.35, 1
+			Button:
+				text: 'ZAPISANE WARKI'
+				font_size: self.parent.width * 0.1
+				background_normal: ''
+				background_color: 0.51, 0.53, 0.65, 1
+				color: 0.21, 0.23, 0.35, 1
+			Button:
+				text: 'USTAWIENIA'
+				font_size: self.parent.width * 0.1
+				background_normal: ''
+				background_color: 0.51, 0.53, 0.65, 1
+				color: 0.21, 0.23, 0.35, 1

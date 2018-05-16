@@ -1,0 +1,202 @@
+<NewBrewBlurring>:
+	name: 'NewBrewBlurring'
+	canvas.before:
+        Color:
+            rgba: 0.21, 0.23, 0.35, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+	BoxLayout:
+		orientation: 'horizontal'
+		height: self.parent.height
+		width: self.parent.width
+		BoxLayout:
+			cols: 1
+			size_hint: 0.3, 1.0
+			orientation: 'vertical'
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				orientation: 'vertical'
+				anchor_x: 'center'
+				anchor_y: 'bottom'
+				BoxLayout:
+					size_hint: 1.0, 0.5
+					orientation: 'vertical'
+					Label:
+						text: 'ZACIERANIE'
+						font_size: self.parent.height * 0.7
+					Label:
+						font_size: self.parent.height * 0.4
+						text: 'PODETAP'
+			AnchorLayout:
+				size_hint: 0.9, 0.6
+				orientation: 'vertical'
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Image:
+					source: 'imgs/kociol.gif'
+					allow_stretch: True
+					size_hint: 0.9, 0.9
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				orientation: 'vertical'
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Button:
+					background_normal: ''
+					background_color: 0.51, 0.53, 0.65, 1
+					color: 0.21, 0.23, 0.35, 1
+					text: 'COFNIJ'
+					font_size: '40dp'
+					font_size: self.parent.height * 0.3
+					on_release: root.back()
+					size_hint: 0.9, 0.7
+		BoxLayout:
+			size_hint: 0.3, 1.0
+			orientation: 'vertical'
+			AnchorLayout:
+				size_hint: 0.9, 0.1
+				orientation: 'horizontal'
+				anchor_x: 'center'
+				anchor_y: 'center'
+				GridLayout:
+					cols: 2
+					Label:
+						size_hint: .4, 1.0
+						font_size: self.parent.width * 0.1
+						id: temp
+						text: 'TEMP'
+					Label:
+						size_hint: .4, 1.0
+						font_size: self.parent.width * 0.1
+						id: date
+						text: 'DATA'
+			AnchorLayout:
+				size_hint: 0.9, 0.1
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Button:
+					background_normal: ''
+					background_color: 0.97, 0.69, 0.23, 1
+					color: 0.21, 0.23, 0.35, 1
+					font_size: self.parent.width * 0.1
+					size_hint: .8, 0.8
+					text: 'SŁÓD'
+			AnchorLayout:
+				size_hint: 0.9, 0.1
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Label:
+					size_hint: 0.1, 0.1
+					text: 'TEMP. ZACIERANIA'
+					font_size: self.parent.width * 0.1
+			AnchorLayout:
+				size_hint: 0.9, 0.4
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Knob:
+					value: 0
+					id: temp_zacierania_knob
+					size: self.parent.width * 0.7, self.parent.width * 0.7
+					knobimg_source: "imgs/knob2.png"
+					show_label: True
+					show_marker: False
+					knobimg_size: 1
+			AnchorLayout:
+				size_hint: 0.9, 0.1
+				anchor_x: 'center'
+				anchor_y: 'center'
+				GridLayout:
+					cols: 3
+					AnchorLayout:
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Label:
+							text: "+"
+							font_size: self.parent.width * 0.5
+					AnchorLayout:
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Label:
+							id: temp_zacierania_label
+							text: "20°C"
+							font_size: self.parent.width * 0.5
+					AnchorLayout:
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Label:
+							text: "-"
+							font_size: self.parent.width * 0.5
+
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				orientation: 'vertical'
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Button:
+					background_normal: ''
+					background_color: 0.51, 0.53, 0.65, 1
+					color: 0.21, 0.23, 0.35, 1
+					text: 'MENU'
+					font_size: '40dp'
+					font_size: self.parent.height * 0.3
+					on_release: root.menu()
+					size_hint: 0.9, 0.7
+		BoxLayout:
+			size_hint: 0.3, 1.0
+			orientation: 'vertical'
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Button:
+					background_normal: ''
+					background_color: 0.97, 0.69, 0.23, 1
+					color: 0.21, 0.23, 0.35, 1
+					font_size: self.parent.width * 0.1
+					size_hint: .8, 0.5
+					text: 'GOTOWANIE'
+					on_release: root.cooking()
+			AnchorLayout:
+				size_hint: 0.9, 0.1
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Label:
+					size_hint: 0.1, 0.1
+					text: 'CZAS ZACIERANIA'
+					font_size: self.parent.width * 0.1
+			AnchorLayout:
+				size_hint: 0.9, 0.4
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Knob:
+					value: 0
+					size: self.parent.width * 0.7, self.parent.width * 0.7
+					id: czas_zacierania_knob
+					knobimg_source: "imgs/knob2.png"
+					show_label: True
+					show_marker: False
+					knobimg_size: 1
+			AnchorLayout:
+				size_hint: 0.9, 0.1
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Label:
+					size_hint: 0.1, 0.1
+					text: '15min'
+					id: czas_zacierania_label
+					font_size: self.parent.width * 0.15
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				orientation: 'vertical'
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Button:
+					background_normal: ''
+					background_color: 0.51, 0.53, 0.65, 1
+					color: 0.21, 0.23, 0.35, 1
+					text: 'DALEJ'
+					font_size: '40dp'
+					font_size: self.parent.height * 0.3
+					on_release: root.menu()
+					size_hint: 0.9, 0.7
