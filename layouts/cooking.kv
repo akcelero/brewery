@@ -13,44 +13,93 @@
 		width: self.parent.width
 		BoxLayout:
 			name: 'left-part'
-			size_hint: 0.8, 1.0
+			size_hint: 0.7, 1.0
 			orientation: 'vertical'
-			Border
-				size_hint: 1, 1
-				BoxLayout:
-					name: 'main-part'
-					orientation: 'vertical'
+			BoxLayout:
+				name: 'main-part'
+				orientation: 'horizontal'
+				size_hint: 1, 0.8
+				AnchorLayout:
+					anchor_x: 'center'
+					anchor_y: 'center'
+					size_hint: 0.5, 1
 					BoxLayout: 
 						orientation: 'vertical'
-						size_hint: 0.5, 1
+						size_hint: 0.9, 1
 						AnchorLayout:
-							size_hint: 0.9, 0.2
+							size_hint: 1, 0.2
 							anchor_x: 'center'
 							anchor_y: 'center'
 							Label:
 								font_size: self.width * 0.2
-								text: 'test'
+								id: etap_label
+								text: 'ETAP'
 						AnchorLayout:
-							size_hint: 0.9, 0.2
+							size_hint: 1, 0.01
 							anchor_x: 'center'
 							anchor_y: 'center'
 							ProgressBar:
 						AnchorLayout:
-							size_hint: 1, 1
+							size_hint: 1, 0.79
 							anchor_x: 'center'
 							anchor_y: 'center'
 							Image:
 								source: 'imgs/kociol.gif'
-								size_hing: None, None
+								size_hint: 0.9, 0.9
 								width: self.parent.width
 								height: self.parent.height
 								allow_stretch: True
+				AnchorLayout:
+					name: 'show-temp-part'
+					size_hint: 0.5, 1
+					anchor_x: 'right'
+					anchor_y: 'center'
 					BoxLayout:
-						name: 'show-temp-part'
-						orientatio: 'vertical'
-						size_hint: 0.5, 1
+						orientation: 'vertical'
+						size_hint: 0.9, 0.95
 						AnchorLayout:
-						
+							anchor_x: 'center'
+							anchor_y: 'bottom'
+							size_hint: 1, 0.1
+							Label:
+								size_hint: 1, 0.8
+								font_size: self.width * 0.1
+								text: "ETR"
+						Border:
+							size_hint: 1, 0.2
+							Label:
+								id: eta
+								font_size: self.width * 0.2
+								text: "0:22"
+						AnchorLayout:
+							size_hint: 1, 0.15
+							anchor_x: 'left'
+							anchor_y: 'bottom'
+							Label:
+								size_hint: 1, 0.8
+								font_size: self.width * 0.1
+								text: "TEMP. DOCELOWA"
+						Border:
+							size_hint: 1, 0.2
+							Label:
+								id: target_temp1
+								font_size: self.width * 0.2
+								text: "22°C"
+						AnchorLayout:
+							anchor_x: 'center'
+							anchor_y: 'bottom'
+							size_hint: 1, 0.15
+							Label:
+								size_hint: 1, 0.8
+								font_size: self.width * 0.1
+								text: "TEMP. AKTUALNA"
+						Border:
+							size_hint: 1, 0.3
+							Label:
+								font_size: self.width * 0.2
+								text: "20°C"
+
+
 			Border:
 				size_hint: 1, 0.2
 				BoxLayout:
@@ -60,61 +109,66 @@
 						anchor_x: 'center'
 						anchor_y: 'center'
 						Label:
+							font_size: self.height * 0.7
 							size_hint: 0.5, 1
-							text: 'time'
+							id: time
 					AnchorLayout
-						anchor_x: 'center'
+						anchor_x: 'right'
 						anchor_y: 'center'
-						Label:
+						Image:
 							text: 'takietam'
-							size_hint: 0.5, 1
-							source: 'imgs/wifi.jpg'
-		BoxLayout:
-			name: 'right-part'
-			orientation: 'vertical'
+							size_hint: 0.7, 0.7
+							source: 'imgs/wifi.png'
+		AnchorLayout:
+			anchor_x: 'center'
+			anchor_y: 'center'
 			size_hint: 0.2, 1.0
-			AnchorLayout:
-				size_hint: 0.9, 0.2
-				anchor_x: 'center'
-				anchor_y: 'center'
-				CheckBox
-					size_hint: 1.0, 0.5
-					active: True
-					background_checkbox_down: 'imgs/check_down.png'
-					background_checkbox_normal: 'imgs/check_on.png'
-					background_normal: ''
-			AnchorLayout:
-				size_hint: 0.9, 0.2
-				anchor_x: 'center'
-				anchor_y: 'center'
-				ImageButton:
-					on_press: root.inc_temp()
-					source: 'imgs/arrow_up.png'
-					allow_stretch: True
-					size_hint: 0.8, 0.8
-			AnchorLayout:
-				size_hint: 0.9, 0.2
-				anchor_x: 'center'
-				anchor_y: 'center'
-				Label:
-					font_size: self.width * 0.4
-					text: '20°C'
-			AnchorLayout:
-				size_hint: 0.9, 0.2
-				anchor_x: 'center'
-				anchor_y: 'center'
-				ImageButton:
-					on_press: root.inc_temp()
-					source: 'imgs/arrow_down.png'
-					allow_stretch: True
-					size_hint: 0.7, 0.7
-			AnchorLayout:
-				size_hint: 0.9, 0.2
-				anchor_x: 'center'
-				anchor_y: 'center'
-				OrangeButton:
-					font_size: self.parent.width * 0.1
-					size_hint: .8, 0.5
-					text: 'PAUZA'
-					on_release: root.menu()
+			BoxLayout:
+				name: 'right-part'
+				orientation: 'vertical'
+				size_hint: 0.9, 1.0
+				AnchorLayout:
+					size_hint: 1, 0.2
+					anchor_x: 'center'
+					anchor_y: 'center'
+					ImageCheckBox:
+						size_hint: 0.7, 0.7
+						active: True
+						source: 'imgs/check_off.png' if self.state == 'down' else 'imgs/check_on.png'
+						background_normal: ''
+				AnchorLayout:
+					size_hint: 1, 0.2
+					anchor_x: 'center'
+					anchor_y: 'center'
+					ImageButton:
+						on_press: root.inc_temp()
+						source: 'imgs/arrow_up.png'
+						allow_stretch: True
+						size_hint: 0.8, 0.8
+				AnchorLayout:
+					size_hint: 1, 0.2
+					anchor_x: 'center'
+					anchor_y: 'center'
+					Label:
+						id: target_temp2
+						font_size: self.width * 0.3
+						text: '20°C'
+				AnchorLayout:
+					size_hint: 1, 0.2
+					anchor_x: 'center'
+					anchor_y: 'center'
+					ImageButton:
+						on_press: root.dec_temp()
+						source: 'imgs/arrow_down.png'
+						allow_stretch: True
+						size_hint: 0.7, 0.7
+				AnchorLayout:
+					size_hint: 1, 0.2
+					anchor_x: 'center'
+					anchor_y: 'center'
+					OrangeButton:
+						font_size: self.parent.width * 0.2
+						size_hint: .9, 0.5
+						text: 'PAUZA'
+						on_release: root.go_to_menu()
 

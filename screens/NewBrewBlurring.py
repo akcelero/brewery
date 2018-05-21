@@ -11,18 +11,18 @@ class NewBrewBlurring(Screen, Activity):
         self.ids.temp_zacierania_knob.on_knob = self.on_knob_temp
         self.ids.czas_zacierania_knob.on_knob = self.on_knob_czas
         self.conf=[{'temp': 20, 'time': 15}]
-        self.update_params()
+        self.update_layout()
         self.config_manager = ConfigManager()
 
     def on_resume(self, conf=None):
         if conf:
             self.conf = conf
-            self.update_params()
+            self.update_layout()
 
     def on_start(self, conf=None):
         if conf:
             self.conf = conf
-            self.update_params()
+            self.update_layout()
 
     def edit_val(self, name):
         if name == 'NumberInput':
@@ -41,13 +41,13 @@ class NewBrewBlurring(Screen, Activity):
 
     def on_knob_temp(self, val):
         self.conf[-1]['temp'] = int(val)
-        self.update_params()
+        self.update_layout()
 
     def on_knob_czas(self, val):
         self.conf[-1]['time'] = int(val)
-        self.update_params()
+        self.update_layout()
 
-    def update_params(self):
+    def update_layout(self):
         time = self.conf[-1]['time']
         temp = self.conf[-1]['temp']
         self.ids.czas_zacierania_label.text = str(time) + "min"
@@ -58,21 +58,21 @@ class NewBrewBlurring(Screen, Activity):
 
     def next_stage(self):
         self.conf.append({'temp': 20, 'time': 15})
-        self.update_params()
+        self.update_layout()
 
     def prev_stage(self):
         self.conf = self.conf[:-1]
         if len(self.conf) == 0:
             self.conf.append({'temp': 20, 'time': 15})
-        self.update_params()
+        self.update_layout()
 
     def inc_temp(self):
         self.conf[-1]['temp'] = (self.conf[-1]['temp'] + 1) % 100
-        self.update_params()
+        self.update_layout()
 
     def dec_temp(self):
         self.conf[-1]['temp'] = (self.conf[-1]['temp'] + 99) % 100
-        self.update_params()
+        self.update_layout()
 
     def save_config(self):
         self.manager.go('SaveConfig', self.conf)

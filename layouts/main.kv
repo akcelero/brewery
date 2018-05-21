@@ -4,6 +4,9 @@
 #:include layouts/save_config.kv
 #:include layouts/saved_configs.kv
 
+<ImageCheckBox@ToggleButtonBehavior+Image>:
+    allow_stretch: True
+
 <ImageButton@ButtonBehavior+Image>:
 
 <OrangeButton@Button>:
@@ -22,14 +25,14 @@
 <Border@AnchorLayout>:
 	canvas.before:
         Color:
-            rgba: 1,1,1, 1
+            rgba: .51, .53, .65, 1
         Rectangle:
             pos: self.pos
             size: self.size
 	AnchorLayout:
 		size_hint: None, None
-		width: self.parent.width - 2
-		height: self.parent.height - 2
+		width: self.parent.width - 4
+		height: self.parent.height - 4
 		canvas.before:
 			Color:
 				rgba: 0.21, 0.23, 0.35, 1

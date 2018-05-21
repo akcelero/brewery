@@ -156,30 +156,23 @@
 				anchor_x: 'center'
 				anchor_y: 'bottom'
 				BoxLayout:
-					orientation: 'horizontal'
-					size_hint: 1, 1
+					orientation: 'vertical'
+					size_hint: 1, 0.9
 					AnchorLayout:
 						size_hint: 1, 0.5
-						size_hint: 0.5, 1
 						anchor_x: 'center'
 						anchor_y: 'center'
-						Button:
-							background_normal: ''
-							background_color: 0.97, 0.69, 0.23, 1
-							color: 0.21, 0.23, 0.35, 1
-							font_size: self.parent.width * 0.14
+						OrangeButton:
+							font_size: self.parent.height * 0.5
 							size_hint: 0.9, 0.9
 							text: 'GOTOWANIE'
 							on_release: root.cooking()
 					AnchorLayout:
-						size_hint: 0.5, 1
+						size_hint: 1, 0.5
 						anchor_x: 'center'
 						anchor_y: 'center'
-						Button:
-							background_normal: ''
-							background_color: 0.97, 0.69, 0.23, 1
-							color: 0.21, 0.23, 0.35, 1
-							font_size: self.parent.width * 0.2
+						OrangeButton:
+							font_size: self.parent.height * 0.5
 							size_hint: 0.9, 0.9
 							text: 'ZAPISZ'
 							on_release: root.save_config()

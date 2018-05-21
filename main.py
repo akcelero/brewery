@@ -13,6 +13,7 @@ from kivy.config import Config
 from config_manager import ConfigManager
 from screens.Activity import Activity
 from screens.Cooking import Cooking
+from screens.MainMenu import MainMenu
 from screens.NewBrewBlurring import NewBrewBlurring
 from screens.SavedConfigs import SavedConfigs
 from screens.SaveConfig import SaveConfig
@@ -24,11 +25,11 @@ class ScreenManager(ScreenManager):
     def __init__(self, *args, **kwargs):
         super(ScreenManager, self).__init__(*args, **kwargs)
         self.screens = [
+                SavedConfigs(name='SavedConfigs'),
+                NewBrewBlurring(name='NewBrewBlurring'),
                 Cooking(name='Cooking'),
                 MainMenu(name='MainMenu'),
-                NewBrewBlurring(name='NewBrewBlurring'),
                 SaveConfig(name='SaveConfig'),
-                SavedConfigs(name='SavedConfigs'),
             ]
         [self.add_widget(self.screens[i]) for i in range(len(self.screens))]
         self.stack = [self.screens[0].name]
@@ -40,24 +41,14 @@ class ScreenManager(ScreenManager):
 
     def go(self, name, data={}):
         self.get_screen_by_name(name).on_start(data)
-        self.current = name
         if name == 'MainMenu':
             self.stack = [name]
         else:
             self.stack.append(name)
+        self.current = name
 
     def get_screen_by_name(self, name):
         return next((s for s in self.screens if s.name == name), None)
-
-
-
-class MainMenu(Screen, Activity):
-
-    def new_brew(self):
-        self.manager.go('NewBrewBlurring')
-
-    def saved_configs(self):
-        self.manager.go('SavedConfigs')
 
 
 class MainApp(App):
