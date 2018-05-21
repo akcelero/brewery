@@ -1,0 +1,42 @@
+<SavedConfigs>
+	name: "SavedConfigs"
+	canvas.before:
+        Color:
+            rgba: 0.21, 0.23, 0.35, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+	BoxLayout
+		orientation: 'vertical'
+		Label:
+			text: 'WYBIERZ KONFIGURACJE'
+			font_size: self.width * 0.06
+			size_hint: 1, 0.2
+		AnchorLayout:
+			anchor_x: 'center'
+			anchor_y: 'center'
+			size_hint: 1, .7
+			ScrollView:
+				size_hint: 0.6, 1
+				id: config_scroll
+				size: self.size
+				do_scroll_x: False
+				BoxLayout:
+					padding: 10
+					spacing: 10
+					size_hint_y: None
+					height: self.minimum_height
+					id: config_list
+					orientation: 'vertical'
+		AnchorLayout:
+			size_hint: 1, 0.1
+			anchor_x: 'center'
+			anchor_y: 'center'
+			Button:
+				size_hint: 0.6, 0.8
+				background_normal: ''
+				background_color: 0.97, 0.69, 0.23, 1
+				color: 0.21, 0.23, 0.35, 1
+				font_size: self.parent.height * 0.6
+				text: "MENU"
+				on_release: root.go_to_menu()

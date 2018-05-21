@@ -1,0 +1,120 @@
+<Cooking>:
+	name: 'Cooking'
+	canvas.before:
+        Color:
+            rgba: 0.21, 0.23, 0.35, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+	BoxLayout:
+		name: 'body'
+		orientation: 'horizontal'
+		height: self.parent.height
+		width: self.parent.width
+		BoxLayout:
+			name: 'left-part'
+			size_hint: 0.8, 1.0
+			orientation: 'vertical'
+			Border
+				size_hint: 1, 1
+				BoxLayout:
+					name: 'main-part'
+					orientation: 'vertical'
+					BoxLayout: 
+						orientation: 'vertical'
+						size_hint: 0.5, 1
+						AnchorLayout:
+							size_hint: 0.9, 0.2
+							anchor_x: 'center'
+							anchor_y: 'center'
+							Label:
+								font_size: self.width * 0.2
+								text: 'test'
+						AnchorLayout:
+							size_hint: 0.9, 0.2
+							anchor_x: 'center'
+							anchor_y: 'center'
+							ProgressBar:
+						AnchorLayout:
+							size_hint: 1, 1
+							anchor_x: 'center'
+							anchor_y: 'center'
+							Image:
+								source: 'imgs/kociol.gif'
+								size_hing: None, None
+								width: self.parent.width
+								height: self.parent.height
+								allow_stretch: True
+					BoxLayout:
+						name: 'show-temp-part'
+						orientatio: 'vertical'
+						size_hint: 0.5, 1
+						AnchorLayout:
+						
+			Border:
+				size_hint: 1, 0.2
+				BoxLayout:
+					name: 'date-wifi'
+					orientation: 'horizontal'
+					AnchorLayout
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Label:
+							size_hint: 0.5, 1
+							text: 'time'
+					AnchorLayout
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Label:
+							text: 'takietam'
+							size_hint: 0.5, 1
+							source: 'imgs/wifi.jpg'
+		BoxLayout:
+			name: 'right-part'
+			orientation: 'vertical'
+			size_hint: 0.2, 1.0
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				anchor_x: 'center'
+				anchor_y: 'center'
+				CheckBox
+					size_hint: 1.0, 0.5
+					active: True
+					background_checkbox_down: 'imgs/check_down.png'
+					background_checkbox_normal: 'imgs/check_on.png'
+					background_normal: ''
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				anchor_x: 'center'
+				anchor_y: 'center'
+				ImageButton:
+					on_press: root.inc_temp()
+					source: 'imgs/arrow_up.png'
+					allow_stretch: True
+					size_hint: 0.8, 0.8
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				anchor_x: 'center'
+				anchor_y: 'center'
+				Label:
+					font_size: self.width * 0.4
+					text: '20°C'
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				anchor_x: 'center'
+				anchor_y: 'center'
+				ImageButton:
+					on_press: root.inc_temp()
+					source: 'imgs/arrow_down.png'
+					allow_stretch: True
+					size_hint: 0.7, 0.7
+			AnchorLayout:
+				size_hint: 0.9, 0.2
+				anchor_x: 'center'
+				anchor_y: 'center'
+				OrangeButton:
+					font_size: self.parent.width * 0.1
+					size_hint: .8, 0.5
+					text: 'PAUZA'
+					on_release: root.menu()
+
