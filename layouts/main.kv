@@ -1,3 +1,6 @@
+#:set dark_blue 0.21, 0.23, 0.35, 1
+#:set light_blue .51, .53, .65, 1
+#:set orange 0.97, 0.69, 0.23, 1
 #:include layouts/new_brew.kv
 #:include layouts/cooking.kv
 #:include layouts/main_menu.kv
@@ -11,8 +14,13 @@
 
 <OrangeButton@Button>:
 	background_normal: ''
-	background_color: 0.97, 0.69, 0.23, 1
-	color: 0.21, 0.23, 0.35, 1
+	background_color: orange
+	color: dark_blue
+
+<BlueButton@Button>:
+	background_normal: ''
+	background_color: light_blue
+	color: dark_blue
 
 <ConfigPosition@Button>:
 	background_normal: ''

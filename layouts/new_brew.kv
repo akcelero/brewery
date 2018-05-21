@@ -24,7 +24,7 @@
 					orientation: 'vertical'
 					Label:
 						text: 'ZACIERANIE'
-						font_size: self.parent.height * 0.7
+						font_size: self.parent.height * 0.6
 					Label:
 						id: podetap_label
 						font_size: self.parent.height * 0.4
@@ -64,22 +64,21 @@
 					cols: 2
 					Label:
 						size_hint: .4, 1.0
+						color: light_blue
 						font_size: self.parent.width * 0.1
 						id: temp
 						text: 'TEMP'
 					Label:
 						size_hint: .4, 1.0
 						font_size: self.parent.width * 0.1
+						color: light_blue
 						id: date
 						text: 'DATA'
 			AnchorLayout:
 				size_hint: 0.9, 0.1
 				anchor_x: 'center'
 				anchor_y: 'center'
-				Button:
-					background_normal: ''
-					background_color: 0.97, 0.69, 0.23, 1
-					color: 0.21, 0.23, 0.35, 1
+				OrangeButton:
 					font_size: self.parent.width * 0.1
 					size_hint: .8, 0.8
 					text: 'SŁÓD'
@@ -89,6 +88,7 @@
 				anchor_y: 'center'
 				Label:
 					size_hint: 0.1, 0.1
+					color: light_blue
 					text: 'TEMP. ZACIERANIA'
 					font_size: self.parent.width * 0.1
 			AnchorLayout:
@@ -122,6 +122,7 @@
 						anchor_y: 'center'
 						Label:
 							id: temp_zacierania_label
+							color: light_blue
 							text: "20°C"
 							font_size: self.parent.width * 0.5
 					AnchorLayout:
@@ -139,10 +140,7 @@
 				orientation: 'vertical'
 				anchor_x: 'center'
 				anchor_y: 'center'
-				Button:
-					background_normal: ''
-					background_color: 0.51, 0.53, 0.65, 1
-					color: 0.21, 0.23, 0.35, 1
+				BlueButton:
 					text: 'MENU'
 					font_size: '40dp'
 					font_size: self.parent.height * 0.3
@@ -182,6 +180,7 @@
 				anchor_y: 'center'
 				Label:
 					size_hint: 0.1, 0.1
+					color: light_blue
 					text: 'CZAS ZACIERANIA'
 					font_size: self.parent.width * 0.1
 			AnchorLayout:
@@ -202,6 +201,7 @@
 				anchor_y: 'center'
 				Label:
 					size_hint: 0.1, 0.1
+					color: light_blue
 					text: '15min'
 					id: czas_zacierania_label
 					font_size: self.parent.width * 0.15
@@ -210,10 +210,7 @@
 				orientation: 'vertical'
 				anchor_x: 'center'
 				anchor_y: 'center'
-				Button:
-					background_normal: ''
-					background_color: 0.51, 0.53, 0.65, 1
-					color: 0.21, 0.23, 0.35, 1
+				BlueButton:
 					text: 'DALEJ'
 					font_size: '40dp'
 					font_size: self.parent.height * 0.3

@@ -8,6 +8,7 @@ class Cooking(Screen, Activity):
     def __init__(self, *args, **kwargs):
         super(Cooking, self).__init__(*args, **kwargs)
         self.current_stage = 0
+        self.time_left = 0
         self.target_temp = 20
 
     def schedule_loop(self):
@@ -16,17 +17,15 @@ class Cooking(Screen, Activity):
     def unschedule_loop(self):
         Clock.unschedule(self.loop_schedule)
 
-    def loop(self, time=None):
+    def loop(self, delta_time=None):
         self.update_layout()
         current_time = int(time.time())
         current_delay = self.config[self.current_stage]['time'] * 60
         self.time_left = self.time_start + current_delay - current_time
         if self.time_left <= 0:
             current_stage += 1
-        if len(self.config) == current_stage:
+        if len(self.config) == self.current_stage:
             self.unschedule_loop()
-
-
 
     def on_start(self, data):
         print(data)

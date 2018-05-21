@@ -2,7 +2,7 @@
 	name: 'Cooking'
 	canvas.before:
         Color:
-            rgba: 0.21, 0.23, 0.35, 1
+            rgba: dark_blue
         Rectangle:
             pos: self.pos
             size: self.size
@@ -69,6 +69,7 @@
 							size_hint: 1, 0.2
 							Label:
 								id: eta
+								color: light_blue
 								font_size: self.width * 0.2
 								text: "0:22"
 						AnchorLayout:
@@ -82,6 +83,7 @@
 						Border:
 							size_hint: 1, 0.2
 							Label:
+								color: light_blue
 								id: target_temp1
 								font_size: self.width * 0.2
 								text: "22°C"
@@ -96,10 +98,9 @@
 						Border:
 							size_hint: 1, 0.3
 							Label:
+								color: light_blue
 								font_size: self.width * 0.2
 								text: "20°C"
-
-
 			Border:
 				size_hint: 1, 0.2
 				BoxLayout:
@@ -151,6 +152,7 @@
 					anchor_y: 'center'
 					Label:
 						id: target_temp2
+						color: light_blue
 						font_size: self.width * 0.3
 						text: '20°C'
 				AnchorLayout:
