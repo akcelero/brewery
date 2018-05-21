@@ -26,6 +26,7 @@
 						text: 'ZACIERANIE'
 						font_size: self.parent.height * 0.7
 					Label:
+						id: podetap_label
 						font_size: self.parent.height * 0.4
 						text: 'PODETAP'
 			AnchorLayout:
@@ -49,7 +50,7 @@
 					text: 'COFNIJ'
 					font_size: '40dp'
 					font_size: self.parent.height * 0.3
-					on_release: root.back()
+					on_release: root.prev_stage()
 					size_hint: 0.9, 0.7
 		BoxLayout:
 			size_hint: 0.3, 1.0
@@ -111,9 +112,11 @@
 					AnchorLayout:
 						anchor_x: 'center'
 						anchor_y: 'center'
-						Label:
-							text: "+"
-							font_size: self.parent.width * 0.5
+						ImageButton:
+							on_press: root.inc_temp()
+							source: 'imgs/plus.png'
+							allow_stretch: True
+							size_hint: 0.6, 0.6
 					AnchorLayout:
 						anchor_x: 'center'
 						anchor_y: 'center'
@@ -124,10 +127,13 @@
 					AnchorLayout:
 						anchor_x: 'center'
 						anchor_y: 'center'
-						Label:
-							text: "-"
-							font_size: self.parent.width * 0.5
-
+						ImageButton:
+							on_press: root.dec_temp()
+							source: 'imgs/minus.png'
+							size_hint: 0.6, 0.6
+							center_x: self.parent.center_x
+							center_y: self.parent.center_y
+							allow_stretch: True
 			AnchorLayout:
 				size_hint: 0.9, 0.2
 				orientation: 'vertical'
@@ -148,15 +154,35 @@
 			AnchorLayout:
 				size_hint: 0.9, 0.2
 				anchor_x: 'center'
-				anchor_y: 'center'
-				Button:
-					background_normal: ''
-					background_color: 0.97, 0.69, 0.23, 1
-					color: 0.21, 0.23, 0.35, 1
-					font_size: self.parent.width * 0.1
-					size_hint: .8, 0.5
-					text: 'GOTOWANIE'
-					on_release: root.cooking()
+				anchor_y: 'bottom'
+				BoxLayout:
+					orientation: 'horizontal'
+					size_hint: 1, 1
+					AnchorLayout:
+						size_hint: 1, 0.5
+						size_hint: 0.5, 1
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Button:
+							background_normal: ''
+							background_color: 0.97, 0.69, 0.23, 1
+							color: 0.21, 0.23, 0.35, 1
+							font_size: self.parent.width * 0.14
+							size_hint: 0.9, 0.9
+							text: 'GOTOWANIE'
+							on_release: root.cooking()
+					AnchorLayout:
+						size_hint: 0.5, 1
+						anchor_x: 'center'
+						anchor_y: 'center'
+						Button:
+							background_normal: ''
+							background_color: 0.97, 0.69, 0.23, 1
+							color: 0.21, 0.23, 0.35, 1
+							font_size: self.parent.width * 0.2
+							size_hint: 0.9, 0.9
+							text: 'ZAPISZ'
+							on_release: root.save_config()
 			AnchorLayout:
 				size_hint: 0.9, 0.1
 				anchor_x: 'center'
@@ -198,5 +224,5 @@
 					text: 'DALEJ'
 					font_size: '40dp'
 					font_size: self.parent.height * 0.3
-					on_release: root.menu()
+					on_release: root.next_stage()
 					size_hint: 0.9, 0.7
