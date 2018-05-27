@@ -32,8 +32,7 @@
 							anchor_y: 'center'
 							Label:
 								font_size: self.width * 0.2
-								id: etap_label
-								text: 'ETAP'
+								text: 'ETAP ' + str(root.current_stage + 1)
 						AnchorLayout:
 							size_hint: 1, 0.01
 							anchor_x: 'center'
@@ -71,7 +70,7 @@
 								id: eta
 								color: light_blue
 								font_size: self.width * 0.2
-								text: "0:22"
+								text: root.eta_time(root.time_left)
 						AnchorLayout:
 							size_hint: 1, 0.15
 							anchor_x: 'left'
@@ -84,9 +83,8 @@
 							size_hint: 1, 0.2
 							Label:
 								color: light_blue
-								id: target_temp1
 								font_size: self.width * 0.2
-								text: "22°C"
+								text: str(root.target_temp) + "°C"
 						AnchorLayout:
 							anchor_x: 'center'
 							anchor_y: 'bottom'
@@ -100,7 +98,7 @@
 							Label:
 								color: light_blue
 								font_size: self.width * 0.2
-								text: "20°C"
+								text: str(root.current_temp) + "°C"
 			Border:
 				size_hint: 1, 0.2
 				BoxLayout:
@@ -109,17 +107,30 @@
 					AnchorLayout
 						anchor_x: 'center'
 						anchor_y: 'center'
+						size_hint_x: .6
+						padding_left: 20
 						Label:
 							font_size: self.height * 0.7
 							size_hint: 0.5, 1
-							id: time
+							text: root.time()
+							id: clock
 					AnchorLayout
-						anchor_x: 'right'
+						anchor_x: 'center'
 						anchor_y: 'center'
+						size_hint_x: .2
 						Image:
 							text: 'takietam'
 							size_hint: 0.7, 0.7
 							source: 'imgs/wifi.png'
+					AnchorLayout
+						anchor_x: 'center'
+						anchor_y: 'center'
+						size_hint_x: .2
+						ImageButton:
+							text: 'takietam'
+							size_hint: 0.3, 0.3
+							source: 'imgs/break.png'
+							on_release: root.manager.go('MainMenu')
 		AnchorLayout:
 			anchor_x: 'center'
 			anchor_y: 'center'
@@ -151,10 +162,9 @@
 					anchor_x: 'center'
 					anchor_y: 'center'
 					Label:
-						id: target_temp2
+						text: str(root.target_temp) + "°C"
 						color: light_blue
 						font_size: self.width * 0.3
-						text: '20°C'
 				AnchorLayout:
 					size_hint: 1, 0.2
 					anchor_x: 'center'
@@ -172,5 +182,6 @@
 						font_size: self.parent.width * 0.2
 						size_hint: .9, 0.5
 						text: 'PAUZA'
-						on_release: root.go_to_menu()
+						id: pause_button
+						on_release: root.toggle_pause()
 

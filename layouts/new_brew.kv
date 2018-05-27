@@ -2,7 +2,7 @@
 	name: 'NewBrewBlurring'
 	canvas.before:
         Color:
-            rgba: 0.21, 0.23, 0.35, 1
+            rgba: dark_blue
         Rectangle:
             pos: self.pos
             size: self.size
@@ -82,6 +82,7 @@
 					font_size: self.parent.width * 0.1
 					size_hint: .8, 0.8
 					text: 'SŁÓD'
+					on_release: root.go_to_edit_hops()
 			AnchorLayout:
 				size_hint: 0.9, 0.1
 				anchor_x: 'center'
@@ -123,7 +124,7 @@
 						Label:
 							id: temp_zacierania_label
 							color: light_blue
-							text: "20°C"
+							text: "WTF°C"
 							font_size: self.parent.width * 0.5
 					AnchorLayout:
 						anchor_x: 'center'

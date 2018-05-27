@@ -3,6 +3,9 @@
 #:set orange 0.97, 0.69, 0.23, 1
 #:include layouts/new_brew.kv
 #:include layouts/cooking.kv
+#:include layouts/edit_hops.kv
+#:include layouts/hops.kv
+#:include layouts/finish.kv
 #:include layouts/main_menu.kv
 #:include layouts/save_config.kv
 #:include layouts/saved_configs.kv
@@ -33,7 +36,7 @@
 <Border@AnchorLayout>:
 	canvas.before:
         Color:
-            rgba: .51, .53, .65, 1
+            rgba: light_blue
         Rectangle:
             pos: self.pos
             size: self.size
@@ -43,9 +46,53 @@
 		height: self.parent.height - 4
 		canvas.before:
 			Color:
-				rgba: 0.21, 0.23, 0.35, 1
+				rgba: dark_blue
 			Rectangle:
 				pos: self.pos
 				size: self.size
 
+<ConfirmPopup>
+	canvas.before:
+		Color:
+			rgba: light_blue
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	# background_color: light_blue
+	size_hint: 0.8, 0.5
+	title_size:0
+	
+	auto_dismiss: False
+	font_size: 0
+	title: ''
+	separator_height: 0 
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgba: dark_blue
+			Rectangle:
+				pos: self.pos
+				size: self.size
+
+		orientation: 'vertical'
+		size_hint: 1, 1
+		AnchorLayout:
+			anchor_x: 'center'
+			anchor_y: 'center'
+			size_hint: 1, 0.6
+			Label:
+				font_size: self.width * 0.10
+				text: root.text
+				color: light_blue
+		AnchorLayout:
+			anchor_x: 'center'
+			anchor_y: 'center'
+			size_hint: 1, 0.4
+			OrangeButton:
+				size_hint: 0.8, 0.5
+				text: 'DALEJ'
+				font_size: self.height * 0.8
+				on_release: root.ok()
+			
+				
 

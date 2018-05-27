@@ -1,4 +1,5 @@
 #!/bin/python
+# -*- coding: utf-8 -*-
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.gridlayout import GridLayout
@@ -11,12 +12,15 @@ from kivy.uix.screenmanager import FadeTransition
 from kivy.uix.progressbar import ProgressBar
 from kivy.config import Config
 from config_manager import ConfigManager
-from screens.Activity import Activity
-from screens.Cooking import Cooking
-from screens.MainMenu import MainMenu
-from screens.NewBrewBlurring import NewBrewBlurring
-from screens.SavedConfigs import SavedConfigs
-from screens.SaveConfig import SaveConfig
+from screens.activity import Activity
+from screens.cooking import Cooking
+from screens.main_menu import MainMenu
+from screens.new_brew_blurring import NewBrewBlurring
+from screens.saved_configs import SavedConfigs
+from screens.save_config import SaveConfig
+from screens.edit_hops import EditHops
+from screens.hops import Hops
+from screens.finish import Finish
 
 Builder.load_file('layouts/main.kv')
 
@@ -25,17 +29,20 @@ class ScreenManager(ScreenManager):
     def __init__(self, *args, **kwargs):
         super(ScreenManager, self).__init__(*args, **kwargs)
         self.screens = [
+                MainMenu(name='MainMenu'),
+                Hops(name='Hops'),
                 SavedConfigs(name='SavedConfigs'),
+                Finish(name='Finish'),
+                EditHops(name='EditHops'),
                 NewBrewBlurring(name='NewBrewBlurring'),
                 Cooking(name='Cooking'),
-                MainMenu(name='MainMenu'),
                 SaveConfig(name='SaveConfig'),
             ]
         [self.add_widget(self.screens[i]) for i in range(len(self.screens))]
         self.stack = [self.screens[0].name]
 
     def back(self, data={}):
-        self.stack = self.stack[:-1]
+        self.stack.pop()
         self.get_screen_by_name(self.stack[-1]).on_resume(data)
         self.current = self.stack[-1]
 
@@ -47,8 +54,15 @@ class ScreenManager(ScreenManager):
             self.stack.append(name)
         self.current = name
 
+    def go_without_snap(self, name, data={}):
+        self.get_screen_by_name(name).on_start(data)
+        self.stack.pop()
+        self.stack.append(name)
+        self.current = name
+
     def get_screen_by_name(self, name):
         return next((s for s in self.screens if s.name == name), None)
+
 
 
 class MainApp(App):
