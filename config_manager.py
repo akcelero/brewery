@@ -17,4 +17,4 @@ class ConfigManager():
         return None
 
     def get_list(self):
-        return sorted([f.split('.')[0] for f in os.listdir("configs")])
+        return sorted([f.split('.')[0] for f in os.listdir("configs") if f.split('.')[0].endswith('.js')])
