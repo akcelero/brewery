@@ -1,0 +1,61 @@
+<Chmiel>:
+	AnchorLayout:
+		size_hint: 0.4, 1
+		Label:
+			text: "CHMIEL " + str(root.number + 1)
+			color: light_blue
+			font_size: self.height * 0.4
+	AnchorLayout:
+		anchor_x: 'right'
+		size_hint: 0.2, 1
+		ImageButton:
+			source: 'imgs/plus.png'
+			allow_stretch: True
+			size_hint: 0.4, 0.4
+			on_press: root.inc_pressed()
+			on_release: root.inc_released()
+	AnchorLayout:
+		size_hint: 0.2, 1
+		Label:
+			color: white
+			id: value
+			text: str(root.time) + 'min'
+			size_hint_y: 0.7
+			font_size: self.height * 0.5
+	AnchorLayout:
+		anchor_x: 'left'
+		anchor_y: 'center'
+		size_hint: 0.2, 1
+		ImageButton:
+			source: 'imgs/minus.png'
+			allow_stretch: True
+			size_hint: 0.4, 0.4
+			on_press: root.dec_pressed()
+			on_release: root.dec_released()
+		
+
+<EditHops>:
+	name: 'EditHop'
+	canvas.before:
+		Color:
+			rgba: dark_blue
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	BoxLayout
+		orientation: 'vertical'
+		Label:
+			text: 'DODAWANIE CHMIELU'
+			font_size: self.width * 0.06
+			size_hint: 1, 0.2
+		BoxLayout:
+			size_hint: 1, .7
+			orientation: 'vertical'
+			id: input_list
+		AnchorLayout:
+			size_hint: 1, 0.1
+			OrangeButton:
+				size_hint: 0.6, 0.8
+				font_size: self.parent.height * 0.6
+				text: "OK"
+				on_release: root.accept()

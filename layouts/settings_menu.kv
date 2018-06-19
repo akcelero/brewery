@@ -1,0 +1,50 @@
+<SettingsMenu>:
+	name: 'Settings'
+	canvas.before:
+		Color:
+			rgba: dark_blue
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	BoxLayout
+		orientation: 'vertical'
+		Label:
+			text: 'USTAWIENIA'
+			font_size: self.height * 0.5
+			size_hint: 1, 0.2
+		AnchorLayout:
+			anchor_x: 'center'
+			anchor_y: 'center'
+			size_hint: 1, .6
+			BoxLayout:
+				size_hint: 0.6, 0.3
+				orientation: 'horizontal'
+				GridLayout:
+					size_hint: 0.7, 1
+					cols: 1
+					Label:
+						text: "Obrót ekranu"
+						font_size: self.height * 0.8
+						size_hint: 1, 1
+					Label:
+						text: 'wymagany restart programu'
+						font_size: self.height * 0.5
+						size_hint: 1, 1
+				AnchorLayout:
+					anchor_x: 'center'
+					anchor_y: 'center'
+					size_hint: 0.3, 1
+					ImageCheckBox:
+						size_hint: 0.6, 0.6
+						id: rotation_checkbox
+						state: root.rotation_prop
+						source: 'imgs/check_off.png' if self.state == 'down' else 'imgs/check_on.png'
+		AnchorLayout:
+			size_hint: 1, 0.1
+			anchor_x: 'center'
+			anchor_y: 'center'
+			OrangeButton:
+				size_hint: 0.6, 0.8
+				font_size: self.parent.height * 0.6
+				text: "MENU"
+				on_release: root.go_to_menu()
