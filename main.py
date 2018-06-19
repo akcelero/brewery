@@ -20,7 +20,7 @@ class MainApp(App):
 if __name__ == "__main__":
     Window.show_cursor = True
     Window.allow_vkeyboard = True
-    Window.fullscreen = False
+    Window.fullscreen = True
 
     Config.set("kivy", "keyboard_mode", "dock")
     Config.set("graphics", "show_cursor", 1)
