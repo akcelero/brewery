@@ -1,13 +1,11 @@
 <MainMenu>:
 	canvas.before:
-        Color:
-            rgba: dark_blue
-        Rectangle:
-            pos: self.pos
-            size: self.size
+		Color:
+			rgba: dark_blue
+		Rectangle:
+			pos: self.pos
+			size: self.size
 	AnchorLayout
-		anchor_x: 'center'
-		anchor_y: 'center'
 		height: self.parent.height
 		width: self.parent.width
 
@@ -24,18 +22,19 @@
 				on_release: root.new_brew()
 				font_size: self.parent.width * 0.1
 				background_normal: ''
-				background_color: 0.51, 0.53, 0.65, 1
-				color: 0.21, 0.23, 0.35, 1
+				background_color: light_blue
+				color: dark_blue
 			Button:
 				text: 'ZAPISANE WARKI'
 				font_size: self.parent.width * 0.1
 				on_release: root.saved_configs()
 				background_normal: ''
-				background_color: 0.51, 0.53, 0.65, 1
-				color: 0.21, 0.23, 0.35, 1
+				background_color: light_blue
+				color: dark_blue
 			Button:
 				text: 'USTAWIENIA'
+				on_release: root.settings()
 				font_size: self.parent.width * 0.1
 				background_normal: ''
-				background_color: 0.51, 0.53, 0.65, 1
-				color: 0.21, 0.23, 0.35, 1
+				background_color: light_blue
+				color: dark_blue

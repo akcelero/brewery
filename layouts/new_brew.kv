@@ -1,5 +1,5 @@
-<NewBrewBlurring>:
-	name: 'NewBrewBlurring'
+<NewBrew>:
+	name: 'NewBrew'
 	canvas.before:
         Color:
             rgba: dark_blue
@@ -17,7 +17,6 @@
 			AnchorLayout:
 				size_hint: 0.9, 0.2
 				orientation: 'vertical'
-				anchor_x: 'center'
 				anchor_y: 'bottom'
 				BoxLayout:
 					size_hint: 1.0, 0.5
@@ -32,8 +31,6 @@
 			AnchorLayout:
 				size_hint: 0.9, 0.6
 				orientation: 'vertical'
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Image:
 					source: 'imgs/kociol.gif'
 					allow_stretch: True
@@ -41,8 +38,6 @@
 			AnchorLayout:
 				size_hint: 0.9, 0.2
 				orientation: 'vertical'
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Button:
 					background_normal: ''
 					background_color: 0.51, 0.53, 0.65, 1
@@ -58,8 +53,6 @@
 			AnchorLayout:
 				size_hint: 0.9, 0.1
 				orientation: 'horizontal'
-				anchor_x: 'center'
-				anchor_y: 'center'
 				GridLayout:
 					cols: 2
 					Label:
@@ -67,7 +60,7 @@
 						color: light_blue
 						font_size: self.parent.width * 0.1
 						id: temp
-						text: 'TEMP'
+						text: str(root.temp) + "°C"
 					Label:
 						size_hint: .4, 1.0
 						font_size: self.parent.width * 0.1
@@ -76,17 +69,13 @@
 						text: 'DATA'
 			AnchorLayout:
 				size_hint: 0.9, 0.1
-				anchor_x: 'center'
-				anchor_y: 'center'
 				OrangeButton:
 					font_size: self.parent.width * 0.1
 					size_hint: .8, 0.8
-					text: 'SŁÓD'
+					text: 'CHMIEL'
 					on_release: root.go_to_edit_hops()
 			AnchorLayout:
 				size_hint: 0.9, 0.1
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Label:
 					size_hint: 0.1, 0.1
 					color: light_blue
@@ -94,8 +83,6 @@
 					font_size: self.parent.width * 0.1
 			AnchorLayout:
 				size_hint: 0.9, 0.4
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Knob:
 					value: 0
 					id: temp_zacierania_knob
@@ -104,33 +91,25 @@
 					show_label: True
 					show_marker: False
 					knobimg_size: 1
+					max: root.MAX_TEMP
 			AnchorLayout:
 				size_hint: 0.9, 0.1
-				anchor_x: 'center'
-				anchor_y: 'center'
 				GridLayout:
 					cols: 3
 					AnchorLayout:
-						anchor_x: 'center'
-						anchor_y: 'center'
 						ImageButton:
-							on_press: root.inc_temp()
+							on_release: root.inc_temp()
 							source: 'imgs/plus.png'
 							allow_stretch: True
 							size_hint: 0.6, 0.6
 					AnchorLayout:
-						anchor_x: 'center'
-						anchor_y: 'center'
 						Label:
 							id: temp_zacierania_label
 							color: light_blue
-							text: "WTF°C"
 							font_size: self.parent.width * 0.5
 					AnchorLayout:
-						anchor_x: 'center'
-						anchor_y: 'center'
 						ImageButton:
-							on_press: root.dec_temp()
+							on_release: root.dec_temp()
 							source: 'imgs/minus.png'
 							size_hint: 0.6, 0.6
 							center_x: self.parent.center_x
@@ -139,8 +118,6 @@
 			AnchorLayout:
 				size_hint: 0.9, 0.2
 				orientation: 'vertical'
-				anchor_x: 'center'
-				anchor_y: 'center'
 				BlueButton:
 					text: 'MENU'
 					font_size: '40dp'
@@ -152,15 +129,12 @@
 			orientation: 'vertical'
 			AnchorLayout:
 				size_hint: 0.9, 0.2
-				anchor_x: 'center'
 				anchor_y: 'bottom'
 				BoxLayout:
 					orientation: 'vertical'
 					size_hint: 1, 0.9
 					AnchorLayout:
 						size_hint: 1, 0.5
-						anchor_x: 'center'
-						anchor_y: 'center'
 						OrangeButton:
 							font_size: self.parent.height * 0.5
 							size_hint: 0.9, 0.9
@@ -168,8 +142,6 @@
 							on_release: root.cooking()
 					AnchorLayout:
 						size_hint: 1, 0.5
-						anchor_x: 'center'
-						anchor_y: 'center'
 						OrangeButton:
 							font_size: self.parent.height * 0.5
 							size_hint: 0.9, 0.9
@@ -177,8 +149,6 @@
 							on_release: root.save_config()
 			AnchorLayout:
 				size_hint: 0.9, 0.1
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Label:
 					size_hint: 0.1, 0.1
 					color: light_blue
@@ -186,31 +156,25 @@
 					font_size: self.parent.width * 0.1
 			AnchorLayout:
 				size_hint: 0.9, 0.4
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Knob:
 					value: 0
 					size: self.parent.width * 0.7, self.parent.width * 0.7
-					id: czas_zacierania_knob
+					id: mashing_time_knob
 					knobimg_source: "imgs/knob2.png"
 					show_label: True
 					show_marker: False
 					knobimg_size: 1
 			AnchorLayout:
 				size_hint: 0.9, 0.1
-				anchor_x: 'center'
-				anchor_y: 'center'
 				Label:
 					size_hint: 0.1, 0.1
 					color: light_blue
 					text: '15min'
-					id: czas_zacierania_label
+					id: mashing_time_label
 					font_size: self.parent.width * 0.15
 			AnchorLayout:
 				size_hint: 0.9, 0.2
 				orientation: 'vertical'
-				anchor_x: 'center'
-				anchor_y: 'center'
 				BlueButton:
 					text: 'DALEJ'
 					font_size: '40dp'

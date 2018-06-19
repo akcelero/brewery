@@ -1,3 +1,30 @@
+<CustomProgressBar>:
+	canvas:
+		Clear
+		Color:
+			rgba: orange
+        Rectangle:
+			pos: self.pos
+            size: self.size
+		Color:
+			rgba: dark_blue
+        Rectangle:
+			pos: self.x + self.border_size, self.y + self.border_size
+            size: self.width - self.border_size * 2, self.height - self.border_size * 2
+		Color:
+			rgba: orange
+		Rectangle:
+			pos: self.x + self.border_size * 2, self.y + self.border_size * 2
+			size: (min(self.val, 100) * (self.width - self.border_size * 4)) / 100, self.height - self.border_size * 4
+
+<StageLabel@Label>:
+	color: dark_blue
+	font_size: self.height * 0.55
+	height: self.width * 0.25
+	size_hint_y: None
+		
+
+
 <Cooking>:
 	name: 'Cooking'
 	canvas.before:
@@ -13,7 +40,7 @@
 		width: self.parent.width
 		BoxLayout:
 			name: 'left-part'
-			size_hint: 0.7, 1.0
+			size_hint: 0.5, 1.0
 			orientation: 'vertical'
 			BoxLayout:
 				name: 'main-part'
@@ -23,7 +50,7 @@
 					anchor_x: 'center'
 					anchor_y: 'center'
 					size_hint: 0.5, 1
-					BoxLayout: 
+					BoxLayout:
 						orientation: 'vertical'
 						size_hint: 0.9, 1
 						AnchorLayout:
@@ -31,15 +58,17 @@
 							anchor_x: 'center'
 							anchor_y: 'center'
 							Label:
-								font_size: self.width * 0.2
-								text: 'ETAP ' + str(root.current_stage + 1)
-						AnchorLayout:
-							size_hint: 1, 0.01
+								font_size: self.width * 0.15
+								id: stage_label
+						Border:
+							size_hint: 1, 0.05
 							anchor_x: 'center'
 							anchor_y: 'center'
-							ProgressBar:
+							CustomProgressBar:
+								val: root.progress
+								border_size: self.height * 0.1
 						AnchorLayout:
-							size_hint: 1, 0.79
+							size_hint: 1, 0.75
 							anchor_x: 'center'
 							anchor_y: 'center'
 							Image:
@@ -62,7 +91,7 @@
 							size_hint: 1, 0.1
 							Label:
 								size_hint: 1, 0.8
-								font_size: self.width * 0.1
+								font_size: self.height * 0.8
 								text: "ETR"
 						Border:
 							size_hint: 1, 0.2
@@ -77,13 +106,13 @@
 							anchor_y: 'bottom'
 							Label:
 								size_hint: 1, 0.8
-								font_size: self.width * 0.1
+								font_size: self.height * 0.5
 								text: "TEMP. DOCELOWA"
 						Border:
 							size_hint: 1, 0.2
 							Label:
 								color: light_blue
-								font_size: self.width * 0.2
+								font_size: self.height * 0.5
 								text: str(root.target_temp) + "°C"
 						AnchorLayout:
 							anchor_x: 'center'
@@ -91,13 +120,13 @@
 							size_hint: 1, 0.15
 							Label:
 								size_hint: 1, 0.8
-								font_size: self.width * 0.1
+								font_size: self.height * 0.5
 								text: "TEMP. AKTUALNA"
 						Border:
 							size_hint: 1, 0.3
 							Label:
 								color: light_blue
-								font_size: self.width * 0.2
+								font_size: self.height * 0.5
 								text: str(root.current_temp) + "°C"
 			Border:
 				size_hint: 1, 0.2
@@ -119,7 +148,7 @@
 						anchor_y: 'center'
 						size_hint_x: .2
 						Image:
-							text: 'takietam'
+							id: wifi_img
 							size_hint: 0.7, 0.7
 							source: 'imgs/wifi.png'
 					AnchorLayout
@@ -139,17 +168,53 @@
 				name: 'right-part'
 				orientation: 'vertical'
 				size_hint: 0.9, 1.0
+				BoxLayout:
+					orientation: 'vertical'
+					size_hint: 1, 0.3
+					BoxLayout:
+						orientation: 'horizontal'
+						anchor_x: 'center'
+						anchor_y: 'center'
+						size_hint: 1, 0.5
+						AnchorLayout:
+							size_hint: 0.3, 1
+							anchor_x: 'right'
+							anchor_y: 'center'
+							Image:
+								size_hint: 0.9, 0.9
+								source: 'imgs/pump.png'
+						AnchorLayout:
+							anchor_x: 'center'
+							anchor_y: 'center'
+							size_hint: 0.7, 1
+							ImageCheckBox:
+								size_hint: 0.7, 0.7
+								active: root.pump_block
+								id: pump_block_checkbox
+								source: 'imgs/check_off.png' if self.state == 'down' else 'imgs/check_on.png'
+					BoxLayout:
+						orientation: 'horizontal'
+						anchor_x: 'center'
+						anchor_y: 'center'
+						size_hint: 1, 0.5
+						AnchorLayout:
+							size_hint: 0.3, 1
+							anchor_x: 'right'
+							anchor_y: 'center'
+							Image:
+								size_hint: 0.6, 0.6
+								source: 'imgs/heaters.png'
+						AnchorLayout:
+							size_hint: 0.7, 1
+							anchor_x: 'center'
+							anchor_y: 'center'
+							ImageCheckBox:
+								size_hint: 0.7, 0.7
+								active: root.heaters_block
+								id: heaters_block_checkbox
+								source: 'imgs/check_off.png' if self.state == 'down' else 'imgs/check_on.png'
 				AnchorLayout:
-					size_hint: 1, 0.2
-					anchor_x: 'center'
-					anchor_y: 'center'
-					ImageCheckBox:
-						size_hint: 0.7, 0.7
-						active: True
-						source: 'imgs/check_off.png' if self.state == 'down' else 'imgs/check_on.png'
-						background_normal: ''
-				AnchorLayout:
-					size_hint: 1, 0.2
+					size_hint: 1, 0.1
 					anchor_x: 'center'
 					anchor_y: 'center'
 					ImageButton:
@@ -158,7 +223,7 @@
 						allow_stretch: True
 						size_hint: 0.8, 0.8
 				AnchorLayout:
-					size_hint: 1, 0.2
+					size_hint: 1, 0.3
 					anchor_x: 'center'
 					anchor_y: 'center'
 					Label:
@@ -166,7 +231,7 @@
 						color: light_blue
 						font_size: self.width * 0.3
 				AnchorLayout:
-					size_hint: 1, 0.2
+					size_hint: 1, 0.1
 					anchor_x: 'center'
 					anchor_y: 'center'
 					ImageButton:
@@ -181,7 +246,24 @@
 					OrangeButton:
 						font_size: self.parent.width * 0.2
 						size_hint: .9, 0.5
-						text: 'PAUZA'
+						text: 'WZNÓW' if root.pause else 'PAUZA'
 						id: pause_button
 						on_release: root.toggle_pause()
-
+		BoxLayout:
+			size_hint: 0.2, 1
+			canvas.before:
+				Color:
+					rgba: light_blue
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			ScrollView:
+				pos: root.pos
+				id: stages_scroll
+				do_scroll_x: False
+				BoxLayout:
+					size_hint_y: None
+					height: self.minimum_height
+					orientation: 'vertical'
+					id: stages_list
+				

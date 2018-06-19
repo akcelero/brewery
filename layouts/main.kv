@@ -1,14 +1,65 @@
-#:set dark_blue 0.21, 0.23, 0.35, 1
+#:set dark_blue .21, .23, .35, 1
 #:set light_blue .51, .53, .65, 1
-#:set orange 0.97, 0.69, 0.23, 1
+#:set orange .97, .69, .23, 1
+#:set bg_blue .53, .60, .69, 1
+#:set red .88, .10, .10, 1
+#:set white 1., 1., 1., 1
 #:include layouts/new_brew.kv
 #:include layouts/cooking.kv
 #:include layouts/edit_hops.kv
-#:include layouts/hops.kv
 #:include layouts/finish.kv
 #:include layouts/main_menu.kv
 #:include layouts/save_config.kv
+#:include layouts/settings_menu.kv
 #:include layouts/saved_configs.kv
+
+<ConfirmPopup@AnchorLayout>:
+	canvas.before:
+		Clear
+		Color:
+			rgba: (0,0,0,0.8)
+		Rectangle:
+			pos: self.pos
+			size: self.size
+	BoxLayout:
+		canvas.before:
+			Clear
+			Color:
+				rgba: light_blue
+			Rectangle:
+				pos: self.pos
+				size: self.size
+			Color:
+				rgba: dark_blue
+			Rectangle:
+				pos: self.x + 4, self.y + 4
+				size: self.width - 8, self.height - 8
+		orientation: 'vertical'
+		size_hint: 0.8, 0.7
+		Label:
+			text: root.text
+			halign: "center"
+			valign: "middle"
+			size_hint_y: 0.6
+			font_size: self.height * 0.3
+			color: light_blue
+		AnchorLayout:
+			size_hint_y: 0.4
+			anchor_x: 'center'
+			anchor_y: 'center'
+			OrangeButton:
+				size_hint: .5, .5
+				text: 'ok'
+				font_size: self.height * .8
+				on_press: root.ok()
+
+<Background>:
+	canvas.before:
+        Color:
+            rgba: dark_blue
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
 <ImageCheckBox@ToggleButtonBehavior+Image>:
     allow_stretch: True
@@ -25,74 +76,16 @@
 	background_color: light_blue
 	color: dark_blue
 
-<ConfigPosition@Button>:
-	background_normal: ''
-	background_color: 0.51, 0.53, 0.65, 1
-	color: 0.21, 0.23, 0.35, 1
-	font_size: self.height * 0.5
-	height: self.width * 0.1
-	size_hint_y: None
-
 <Border@AnchorLayout>:
 	canvas.before:
+		Clear
         Color:
             rgba: light_blue
         Rectangle:
             pos: self.pos
             size: self.size
-	AnchorLayout:
-		size_hint: None, None
-		width: self.parent.width - 4
-		height: self.parent.height - 4
-		canvas.before:
-			Color:
-				rgba: dark_blue
-			Rectangle:
-				pos: self.pos
-				size: self.size
-
-<ConfirmPopup>
-	canvas.before:
 		Color:
-			rgba: light_blue
+			rgba: dark_blue
 		Rectangle:
-			pos: self.pos
-			size: self.size
-	# background_color: light_blue
-	size_hint: 0.8, 0.5
-	title_size:0
-	
-	auto_dismiss: False
-	font_size: 0
-	title: ''
-	separator_height: 0 
-	BoxLayout:
-		canvas.before:
-			Color:
-				rgba: dark_blue
-			Rectangle:
-				pos: self.pos
-				size: self.size
-
-		orientation: 'vertical'
-		size_hint: 1, 1
-		AnchorLayout:
-			anchor_x: 'center'
-			anchor_y: 'center'
-			size_hint: 1, 0.6
-			Label:
-				font_size: self.width * 0.10
-				text: root.text
-				color: light_blue
-		AnchorLayout:
-			anchor_x: 'center'
-			anchor_y: 'center'
-			size_hint: 1, 0.4
-			OrangeButton:
-				size_hint: 0.8, 0.5
-				text: 'DALEJ'
-				font_size: self.height * 0.8
-				on_release: root.ok()
-			
-				
-
+			pos: self.x + 2, self.y + 2
+			size: self.width - 4, self.height - 4
