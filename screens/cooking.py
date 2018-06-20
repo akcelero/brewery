@@ -122,7 +122,8 @@ class Cooking(Screen, Activity):
         self.create_stages_list()
 
     def on_pre_enter(self):
-        self.loop_schedule = Clock.schedule_interval(self.loop, .05)
+        #  self.loop_schedule = Clock.schedule_interval(self.loop, .05) # debug purposes
+        self.loop_schedule = Clock.schedule_interval(self.loop, 1.)
         self.layout_schedule = Clock.schedule_interval(self.update_layout, 1.)
         self.controler_schedule = Clock.schedule_interval(self.controler.update, 1./4.)
         self.update_stage_list = Clock.schedule_interval(self.update_stages_list, 1.)

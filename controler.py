@@ -39,8 +39,8 @@ class Controler():
     big_on_schedule = None
     pump_on_schedule = None
 
-    PUMP_TEMP_LIMIT = 50 # 95
-    TEMP_FOR_CHOPS = 60 # 100
+    PUMP_TEMP_LIMIT = 95
+    TEMP_FOR_CHOPS = 100
 
     def __init__(self):
         # set GPIOs modes
