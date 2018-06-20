@@ -89,9 +89,11 @@ class NewBrew(Screen, Activity):
     # use for plus and minus signs
     def inc_temp(self):
         self.conf[-1]['temp'] = (self.conf[-1]['temp'] + 1 % self.MAX_TEMP)
+        self.update_layout()
 
     def dec_temp(self):
         self.conf[-1]['temp'] = (self.conf[-1]['temp'] - 1 % self.MAX_TEMP)
+        self.update_layout()
 
     def save_config(self):
         data = {'brewing': self.conf, 'hops': self.hops}

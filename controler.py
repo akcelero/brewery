@@ -65,7 +65,7 @@ class Controler():
 
     def read_temp(self):
         # method for thread that measure temperature from sensor
-        self.temp = round(sensor.get_temperature())
+        self.temp = round(sensor.get_temperature()*10)/10.0
 
     def update(self, detla_time=None):
         # method for turn on/off peripherals for keep target temperature

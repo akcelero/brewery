@@ -110,6 +110,7 @@ class Cooking(Screen, Activity):
                 p.open()
                 self.controler.buzzer(3)
             if self.time_left == 0:
+                self.controler.buzzer(5)
                 self.manager.go('Finish')
         else:
             assert False, 'Bad stage ' + str(self.current_stage)
