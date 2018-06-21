@@ -31,8 +31,8 @@ class ScreenManager(ScreenManager):
 
     # call when screen is going back to previous screen, possible to pass dictionary with data
     def back(self, data={}):
-        self.stack.pop()
-        self.get_screen_by_name(self.stack[-1]).on_resume(data)
+        current = self.stack.pop()
+        self.get_screen_by_name(self.stack[-1]).on_resume(data, current)
         self.current = self.stack[-1]
 
     # call when screen open new screen, possible to pass dictionary with data

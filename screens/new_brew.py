@@ -24,9 +24,9 @@ class NewBrew(Screen, Activity):
         self.hops = []
         self.controler = Controler()
 
-    def on_resume(self, conf=None):
-        # in default this is called just when going back from editing hops
-        self.hops = conf
+    def on_resume(self, conf=None, back_from=None):
+        if back_from == 'EditHops':
+            self.hops = conf
 
     def on_start(self, conf=None):
         # set parameters from passed config

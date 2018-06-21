@@ -8,10 +8,10 @@ class Activity():
     def callback(self, name):
         pass
 
-    def on_start(self, data):
+    def on_start(self, data=None):
         pass
 
-    def on_resume(self, data):
+    def on_resume(self, data=None, back_from=None):
         pass
 
     def back(self):
